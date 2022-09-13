@@ -11,7 +11,10 @@ import org.junit.Assert.*
  */
 class ExampleUnitTest {
     @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+    fun generates_number() {
+        val size = 6
+        val dado = Dado(size)
+        val resultado = dado.jogarDado()
+        assertTrue("Number is not between 1 and $size", resultado in 1..size)
     }
 }
