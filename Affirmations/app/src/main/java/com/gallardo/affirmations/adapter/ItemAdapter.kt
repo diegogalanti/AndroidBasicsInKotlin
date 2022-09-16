@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.gallardo.affirmations.R
@@ -13,6 +14,7 @@ class ItemAdapter(private val context: Context, private val dataset: List<Affirm
     RecyclerView.Adapter<ItemAdapter.ItemViewHolder>() {
     class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         val textView = view.findViewById<TextView>(R.id.item_title)
+        val imageView = view.findViewById<ImageView>(R.id.item_image)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -23,6 +25,7 @@ class ItemAdapter(private val context: Context, private val dataset: List<Affirm
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         holder.textView.text = context.resources.getString(dataset[position].stringResourceId)
+        holder.imageView.setImageResource(dataset[position].imageResourceId)
     }
 
     override fun getItemCount(): Int {
