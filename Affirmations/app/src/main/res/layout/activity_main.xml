@@ -10,7 +10,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:scrollbars="vertical"
-        app:layoutManager="LinearLayoutManager"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </FrameLayout>
