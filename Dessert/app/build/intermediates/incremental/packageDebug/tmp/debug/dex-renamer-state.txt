@@ -1,0 +1,4 @@
+#Sat Sep 17 14:15:27 CEST 2022
+base.0=D\:\\ABIK\\Dessert\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
