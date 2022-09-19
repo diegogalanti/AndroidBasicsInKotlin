@@ -17,6 +17,9 @@
 package com.example.android.unscramble.ui.game
 
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.TtsSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +28,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import com.example.android.unscramble.R
 import com.example.android.unscramble.databinding.GameFragmentBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -36,8 +40,21 @@ class GameFragment : Fragment() {
 
     private val viewModel: GameViewModel by viewModels()
     private val _currentScrambledWord = MutableLiveData<String>()
-    val currentScrambledWord : LiveData<String>
-        get() = _currentScrambledWord
+    val currentScrambledWord : LiveData<Spannable> = Transformations.map(_currentScrambledWord) {
+        if (it == null) {
+            SpannableString("")
+        } else {
+            val scrambledWord = it.toString()
+            val spannable: Spannable = SpannableString(scrambledWord)
+            spannable.setSpan(
+                TtsSpan.VerbatimBuilder(scrambledWord).build(),
+                0,
+                scrambledWord.length,
+                Spannable.SPAN_INCLUSIVE_INCLUSIVE
+            )
+            spannable
+        }
+    }
 
 
     // Binding object instance with access to the views in the game_fragment.xml layout
