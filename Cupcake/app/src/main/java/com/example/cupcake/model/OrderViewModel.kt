@@ -64,7 +64,7 @@ class OrderViewModel : ViewModel() {
         return options
     }
 
-    private fun resetOrder() {
+    fun resetOrder() {
         _ccOrderQuantity.value = 0
         _ccFlavor.value = ""
         _ccPickupDate.value = dateOptions[0]
