@@ -16,7 +16,6 @@
 package com.example.dogglers.adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +25,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dogglers.R
 import com.example.dogglers.const.Layout
 import com.example.dogglers.data.DataSource
-import com.example.dogglers.data.DataSource.dogs
 
 /**
  * Adapter to inflate the appropriate list item layout and populate the view with information
@@ -51,7 +49,7 @@ class DogCardAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DogCardViewHolder {
-        return when (viewType) {
+        return when (layout) {
             Layout.GRID -> DogCardViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.grid_list_item, parent, false))
             else -> DogCardViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.vertical_horizontal_list_item, parent, false))
         }

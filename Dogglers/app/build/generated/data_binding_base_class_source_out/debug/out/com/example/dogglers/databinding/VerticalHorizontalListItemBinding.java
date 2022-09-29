@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.dogglers.R;
@@ -19,6 +20,9 @@ import java.lang.String;
 public final class VerticalHorizontalListItemBinding implements ViewBinding {
   @NonNull
   private final MaterialCardView rootView;
+
+  @NonNull
+  public final ConstraintLayout constraintLayout;
 
   @NonNull
   public final TextView dogAge;
@@ -33,9 +37,10 @@ public final class VerticalHorizontalListItemBinding implements ViewBinding {
   public final TextView dogName;
 
   private VerticalHorizontalListItemBinding(@NonNull MaterialCardView rootView,
-      @NonNull TextView dogAge, @NonNull TextView dogHoobies, @NonNull ImageView dogImage,
-      @NonNull TextView dogName) {
+      @NonNull ConstraintLayout constraintLayout, @NonNull TextView dogAge,
+      @NonNull TextView dogHoobies, @NonNull ImageView dogImage, @NonNull TextView dogName) {
     this.rootView = rootView;
+    this.constraintLayout = constraintLayout;
     this.dogAge = dogAge;
     this.dogHoobies = dogHoobies;
     this.dogImage = dogImage;
@@ -69,6 +74,12 @@ public final class VerticalHorizontalListItemBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.constraint_Layout;
+      ConstraintLayout constraintLayout = ViewBindings.findChildViewById(rootView, id);
+      if (constraintLayout == null) {
+        break missingId;
+      }
+
       id = R.id.dog_age;
       TextView dogAge = ViewBindings.findChildViewById(rootView, id);
       if (dogAge == null) {
@@ -93,8 +104,8 @@ public final class VerticalHorizontalListItemBinding implements ViewBinding {
         break missingId;
       }
 
-      return new VerticalHorizontalListItemBinding((MaterialCardView) rootView, dogAge, dogHoobies,
-          dogImage, dogName);
+      return new VerticalHorizontalListItemBinding((MaterialCardView) rootView, constraintLayout,
+          dogAge, dogHoobies, dogImage, dogName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

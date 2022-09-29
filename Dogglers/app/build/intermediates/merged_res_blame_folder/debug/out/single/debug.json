@@ -16,12 +16,12 @@
         "source": "C:\\Users\\Diego Gallardo\\.gradle\\daemon\\7.4.2\\com.example.dogglers.app-main-31:\\drawable\\faye.jpg"
     },
     {
-        "merged": "C:\\Users\\Diego Gallardo\\.gradle\\daemon\\7.4.2\\com.example.dogglers.app-merged_res-29:\\drawable_frankie.jpg.flat",
-        "source": "C:\\Users\\Diego Gallardo\\.gradle\\daemon\\7.4.2\\com.example.dogglers.app-main-31:\\drawable\\frankie.jpg"
-    },
-    {
         "merged": "C:\\Users\\Diego Gallardo\\.gradle\\daemon\\7.4.2\\com.example.dogglers.app-merged_res-29:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
         "source": "C:\\Users\\Diego Gallardo\\.gradle\\daemon\\7.4.2\\com.example.dogglers.app-main-31:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\Diego Gallardo\\.gradle\\daemon\\7.4.2\\com.example.dogglers.app-merged_res-29:\\drawable_frankie.jpg.flat",
+        "source": "C:\\Users\\Diego Gallardo\\.gradle\\daemon\\7.4.2\\com.example.dogglers.app-main-31:\\drawable\\frankie.jpg"
     },
     {
         "merged": "C:\\Users\\Diego Gallardo\\.gradle\\daemon\\7.4.2\\com.example.dogglers.app-merged_res-29:\\layout_vertical_horizontal_list_item.xml.flat",
@@ -42,10 +42,6 @@
     {
         "merged": "C:\\Users\\Diego Gallardo\\.gradle\\daemon\\7.4.2\\com.example.dogglers.app-merged_res-29:\\layout_activity_vertical_list.xml.flat",
         "source": "C:\\Users\\Diego Gallardo\\.gradle\\daemon\\7.4.2\\com.example.dogglers.app-main-31:\\layout\\activity_vertical_list.xml"
-    },
-    {
-        "merged": "com.example.dogglers.app-merged_res-29:/layout_grid_list_item.xml.flat",
-        "source": "com.example.dogglers.app-main-31:/layout/grid_list_item.xml"
     },
     {
         "merged": "C:\\Users\\Diego Gallardo\\.gradle\\daemon\\7.4.2\\com.example.dogglers.app-merged_res-29:\\layout_activity_horizontal_list.xml.flat",
