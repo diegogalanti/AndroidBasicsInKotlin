@@ -21,6 +21,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.coroutineScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,6 +31,7 @@ import com.example.busschedule.viewmodels.BusScheduleViewModel
 import com.example.busschedule.viewmodels.BusScheduleViewModelFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class FullScheduleFragment: Fragment() {
@@ -66,10 +68,11 @@ class FullScheduleFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         recyclerView = binding.recyclerView
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
-        GlobalScope.launch(Dispatchers.IO) {
+        lifecycle.coroutineScope.launch {
             val busStopAdapter = binding.recyclerView.adapter as BusStopAdapter
-            busStopAdapter.submitList(viewModel.fullSchedule())
+            viewModel.fullSchedule().collect() {
+                busStopAdapter.submitList(it)
+            }
         }
     }
 
