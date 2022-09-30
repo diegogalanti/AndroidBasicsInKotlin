@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 //DEPOIS TENTAR TROCAR POR {Schedule.Class}
-@Database(entities = arrayOf(Schedule::class), version = 1)
+@Database(entities = [Schedule::class], version = 1)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun scheduleDao(): ScheduleDao
 
