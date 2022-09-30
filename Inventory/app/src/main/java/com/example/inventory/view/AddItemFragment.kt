@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.inventory
+package com.example.inventory.view
 
 import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Bundle
@@ -21,12 +21,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.inventory.InventoryApplication
+import com.example.inventory.viewmodel.InventoryViewModelFactory
 import com.example.inventory.data.Item
 import com.example.inventory.databinding.FragmentAddItemBinding
+import com.example.inventory.viewmodel.InventoryViewModel
 
 /**
  * Fragment to add or update an item in the Inventory database.
@@ -39,8 +43,6 @@ class AddItemFragment : Fragment() {
                 .itemDao()
         )
     }
-
-    lateinit var item: Item
 
     private val navigationArgs: ItemDetailFragmentArgs by navArgs()
 
@@ -81,8 +83,15 @@ class AddItemFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.saveAction.setOnClickListener {
-            addNewItem()
+        val id = navigationArgs.itemId
+        if (id > 0) {
+            viewModel.retrieveItem(id).observe(this.viewLifecycleOwner) {
+                bind(it)
+            }
+        } else {
+            binding.saveAction.setOnClickListener {
+                addNewItem()
+            }
         }
     }
 
@@ -96,5 +105,29 @@ class AddItemFragment : Fragment() {
                 InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(requireActivity().currentFocus?.windowToken, 0)
         _binding = null
+    }
+
+    private fun bind (item : Item)
+    {
+        val price = "%.2f".format(item.itemPrice)
+        with (binding) {
+            itemName.setText(item.itemName, TextView.BufferType.SPANNABLE)
+            itemPrice.setText(price, TextView.BufferType.SPANNABLE)
+            itemCount.setText(item.quantityInStock.toString(), TextView.BufferType.SPANNABLE)
+            saveAction.setOnClickListener { updateItem() }
+        }
+    }
+
+    private fun updateItem() {
+        if (isEntryValid()) {
+            viewModel.updateItem(
+                this.navigationArgs.itemId,
+                this.binding.itemName.text.toString(),
+                this.binding.itemPrice.text.toString(),
+                this.binding.itemCount.text.toString()
+            )
+            val action = AddItemFragmentDirections.actionAddItemFragmentToItemListFragment()
+            findNavController().navigate(action)
+        }
     }
 }

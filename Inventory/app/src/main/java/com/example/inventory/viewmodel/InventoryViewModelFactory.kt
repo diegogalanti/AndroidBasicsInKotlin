@@ -1,4 +1,4 @@
-package com.example.inventory
+package com.example.inventory.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
